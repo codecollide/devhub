@@ -1,60 +1,67 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './signUpForm.css'
 
-const SignUpForm = () => {
-  const [fullName, setFullName] = useState('')
+const SignUpForm = (props) => {
+  const [fullname, setFullname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // You can implement your sign-up logic here
-    console.log('Full Name:', fullName)
-    console.log('Email:', email)
-    console.log('Password:', password)
-    // Reset the form after submission
-    setFullName('')
-    setEmail('')
-    setPassword('')
+  const navigate = useNavigate()
+
+  const onButtonClick = () => {
+    // logic here
+  }
+  const handleLogin = () => {
+    navigate('/login')
   }
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="fullName">Full Name:</label>
-          <input
-            type="text"
-            id="fullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className={'mainContainer'}>
+      <div className={'titleContainer'}>
+        <div>Sign up</div>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={fullname}
+          placeholder="Enter your fullname here"
+          onChange={(ev) => setFullname(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={email}
+          placeholder="Enter your email here"
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Sign up'} />
+      </div>
+      <div>
+        <p>Already had a account? <a onClick={handleLogin} style={{cursor: 'pointer', color: 'blue'}}>Login here</a></p>
+      </div>
     </div>
   )
 }
 
-export default SignUpForm
+export default SignUpForm;

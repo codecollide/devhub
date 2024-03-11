@@ -1,0 +1,16 @@
+.app-logo{
+
+}
+.app-title{
+    margin-left: 20px;
+}
+.app-header{
+    display: flex;
+    flex-direction: row;
+    background-color: aquamarine;
+    height: 50px;
+    padding: 20px;
+    
+    align-items: center;
+    
+}

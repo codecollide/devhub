@@ -1,47 +1,55 @@
-import { useState } from "react"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './signInForm.css'
 
-function SignInForm () {
+const SignInForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // TODO: implement your sign-in logic here
-    console.log('Email:', email)
-    console.log('Password:', password)
-    // Reset the form after submission
-    setEmail('')
-    setPassword('')
+  const navigate = useNavigate()
+
+  const onButtonClick = () => {
+    // logic here
   }
-
+  const handleRegister = () => {
+    navigate('/signup')
+  }
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Sign In</button>
-      </form>
+    <div className={'mainContainer'}>
+      <div className={'titleContainer'}>
+        <div>Login</div>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={email}
+          placeholder="Enter your email here"
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+      </div>
+      <div>
+        <p>Doesn't have a account? <a onClick={handleRegister} style={{cursor: 'pointer', color: 'blue'}}>Register here</a></p>
+      </div>
     </div>
   )
 }
 
-export default SignInForm
+export default SignInForm;
